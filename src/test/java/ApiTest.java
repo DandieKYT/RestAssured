@@ -58,7 +58,6 @@ public class ApiTest {
                 .body("token", is("QpwL5tke4Pnpja7X4"));
     }
     @Test
-    @Feature("Проблема с проверкой JSON")
     public void singleUser() {
         get("https://reqres.in/api/users/2")
                 .then()
