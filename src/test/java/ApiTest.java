@@ -43,7 +43,7 @@ public class ApiTest {
     }
 
     @Test
-    void loginSuccesfull() {
+    public void loginSuccesfull() {
         String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
         given()
                 .log().uri()
