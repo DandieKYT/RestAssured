@@ -59,11 +59,13 @@ public class ApiTest {
     }
     @Test
     public void singleUser() {
+        String email = "janet.weaver@reqres.in";
         get("https://reqres.in/api/users/2")
                 .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
+                .body(containsString(email))
                 .body("data.id", is(2));
     }
 
