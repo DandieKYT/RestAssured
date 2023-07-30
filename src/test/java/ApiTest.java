@@ -1,18 +1,18 @@
 
 import models.LombokModel;
+
 import org.junit.jupiter.api.Test;
 
 
-
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatStream;
-import static org.assertj.core.api.BDDAssertions.as;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+
 import static specs.LoginSpec.loginRequestSpec;
 import static specs.LoginSpec.loginResponseSpec;
 
@@ -30,14 +30,20 @@ public class ApiTest {
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
-        given(loginRequestSpec)
+
+        LombokModel response = step("Make request", () ->
+         given(loginRequestSpec)
                 .body(loginModel)
                 .when()
                 .post()
                 .then()
-                .body("name", is("morpheus"))
-                .body("job", is("leader"))
-                .spec(loginResponseSpec);
+                .spec(loginResponseSpec)
+                .extract().as(LombokModel.class));
+
+        step("Verify response name", () ->
+                assertThat(response.getName()).isEqualTo("morpheus"));
+        step("Verify response job", () ->
+                assertThat(response.getJob()).isEqualTo("leader"));
     }
 
     @Test
