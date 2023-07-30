@@ -1,11 +1,20 @@
-import io.qameta.allure.restassured.AllureRestAssured;
+
 import models.LombokModel;
 import org.junit.jupiter.api.Test;
 
+
+
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
+
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatStream;
+import static org.assertj.core.api.BDDAssertions.as;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static specs.LoginSpec.loginRequestSpec;
+import static specs.LoginSpec.loginResponseSpec;
 
 public class ApiTest {
     @Test
@@ -21,19 +30,14 @@ public class ApiTest {
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
-        given()
-                .filter(new AllureRestAssured())
-                .log().uri()
-                .contentType(JSON)
+        given(loginRequestSpec)
                 .body(loginModel)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post()
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
                 .body("name", is("morpheus"))
-                .body("job", is("leader"));
+                .body("job", is("leader"))
+                .spec(loginResponseSpec);
     }
 
     @Test
