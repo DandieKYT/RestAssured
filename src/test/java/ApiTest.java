@@ -1,3 +1,5 @@
+import io.qameta.allure.restassured.AllureRestAssured;
+import models.LombokModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -15,12 +17,15 @@ public class ApiTest {
 
     @Test
     public void postUserTest() {
-        String body = "{\"name\": \"morpheus\", \"job\": \"leader\"" +
-                " } ";
+
+        LombokModel loginModel = new LombokModel();
+        loginModel.setName("morpheus");
+        loginModel.setJob("leader");
         given()
+                .filter(new AllureRestAssured())
                 .log().uri()
-                .body(body)
                 .contentType(JSON)
+                .body(loginModel)
                 .when()
                 .post("https://reqres.in/api/users")
                 .then()
