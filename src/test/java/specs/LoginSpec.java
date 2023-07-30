@@ -10,7 +10,6 @@ import static io.restassured.http.ContentType.JSON;
 
 
 public class LoginSpec {
-String name = "morpheus";
     public static RequestSpecification loginRequestSpec = with()
             .filter(withCustomTemplates())
             .log().uri()

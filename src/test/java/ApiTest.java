@@ -1,4 +1,5 @@
 
+import io.qameta.allure.Feature;
 import models.LombokModel;
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class ApiTest {
     }
 
     @Test
+    @Feature("Проверка POST")
     public void postUserTest() {
 
         LombokModel loginModel = new LombokModel();
