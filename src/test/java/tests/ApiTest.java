@@ -4,15 +4,15 @@ import models.LoginModel;
 import models.LombokModel;
 
 import models.SingleUserModel;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 import static specs.DeleteSpec.deleteRequestSpec;
@@ -27,9 +27,11 @@ import static specs.SingleUserSpec.singleRequestSpec;
 import static specs.SingleUserSpec.singleResponseSpec;
 
 public class ApiTest extends TestBase {
+
+
     @Test
     public void apiStatusCode() {
-
+        open("https://reqres.in/");
         LombokModel response = step("Make request and checkout status code", () ->
                 given(errorRequestSpec)
                         .get()
@@ -40,7 +42,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void postUserTest() {
-
+        open("https://reqres.in/");
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
@@ -62,6 +64,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void deleteTest() {
+        open("https://reqres.in/");
           step("Make request delete and checkout status code", () ->{
                 given(deleteRequestSpec)
                         .delete()
@@ -72,6 +75,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void loginSuccessfull() {
+        open("https://reqres.in/");
         LoginModel loginModelSecond = new LoginModel();
         loginModelSecond.setEmail("eve.holt@reqres.in");
         loginModelSecond.setPassword("cityslicka");
@@ -90,6 +94,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void singleUser() {
+        open("https://reqres.in/");
         SingleUserModel response = step("Make request", () ->
                 given(singleRequestSpec)
                         .get()
