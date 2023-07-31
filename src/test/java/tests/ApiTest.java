@@ -31,7 +31,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void apiStatusCode() {
-        open("https://reqres.in/");
+        basePage.openPage();
         LombokModel response = step("Make request and checkout status code", () ->
                 given(errorRequestSpec)
                         .get()
@@ -42,7 +42,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void postUserTest() {
-        open("https://reqres.in/");
+        basePage.openPage();
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
@@ -64,8 +64,8 @@ public class ApiTest extends TestBase {
 
     @Test
     public void deleteTest() {
-        open("https://reqres.in/");
-          step("Make request delete and checkout status code", () ->{
+        basePage.openPage();
+        step("Make request delete and checkout status code", () ->{
                 given(deleteRequestSpec)
                         .delete()
                         .then()
@@ -75,7 +75,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void loginSuccessfull() {
-        open("https://reqres.in/");
+        basePage.openPage();
         LoginModel loginModelSecond = new LoginModel();
         loginModelSecond.setEmail("eve.holt@reqres.in");
         loginModelSecond.setPassword("cityslicka");
@@ -94,7 +94,7 @@ public class ApiTest extends TestBase {
 
     @Test
     public void singleUser() {
-        open("https://reqres.in/");
+        basePage.openPage();
         SingleUserModel response = step("Make request", () ->
                 given(singleRequestSpec)
                         .get()
