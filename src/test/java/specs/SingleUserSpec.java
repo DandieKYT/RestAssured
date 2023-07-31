@@ -13,11 +13,12 @@ import static io.restassured.http.ContentType.JSON;
 
 public class SingleUserSpec {
     public static RequestSpecification singleRequestSpec = with()
+            .baseUri("https://reqres.in/api/users/2")
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
-            .contentType(JSON)
-            .baseUri("https://reqres.in/api/users/2");
+            .contentType(JSON);
+
 
     public static ResponseSpecification singleResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)

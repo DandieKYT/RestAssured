@@ -12,11 +12,11 @@ import static io.restassured.http.ContentType.JSON;
 
 public class DeleteSpec {
     public static RequestSpecification deleteRequestSpec = with()
+            .baseUri("https://reqres.in/api/users/2")
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
-            .contentType(JSON)
-            .baseUri("https://reqres.in/api/users/2");
+            .contentType(JSON);
 
 
     public static ResponseSpecification deleteResponseSpec = new ResponseSpecBuilder()

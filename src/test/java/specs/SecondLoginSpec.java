@@ -13,11 +13,11 @@ import static io.restassured.http.ContentType.JSON;
 
 public class SecondLoginSpec {
     public static RequestSpecification secondLoginRequestSpec = with()
+            .baseUri("https://reqres.in/api/login")
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
-            .contentType(JSON)
-            .baseUri("https://reqres.in/api/login");
+            .contentType(JSON);
 
     public static ResponseSpecification secondLoginResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)

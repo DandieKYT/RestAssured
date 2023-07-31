@@ -12,11 +12,12 @@ import static io.restassured.http.ContentType.JSON;
 
 public class ErrorSpec {
     public static RequestSpecification errorRequestSpec = with()
+            .baseUri("https://reqres.in/api/users/23")
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
-            .contentType(JSON)
-            .baseUri("https://reqres.in/api/users/23");
+            .contentType(JSON);
+
 
 
     public static ResponseSpecification errorResponseSpec = new ResponseSpecBuilder()

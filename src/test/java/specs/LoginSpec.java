@@ -13,12 +13,12 @@ import static io.restassured.http.ContentType.JSON;
 
 public class LoginSpec {
     public static RequestSpecification loginRequestSpec = with()
+            .baseUri("https://reqres.in/api/users")
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
-            .contentType(JSON)
-            .baseUri("https://reqres.in/api/users")
-            .basePath("api/users");
+            .contentType(JSON);
+
 
     public static ResponseSpecification loginResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
