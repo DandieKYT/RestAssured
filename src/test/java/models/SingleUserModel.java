@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LombokModel {
-    String name, job;
+public class SingleUserModel {
+    String id;
 }
