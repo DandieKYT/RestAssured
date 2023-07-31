@@ -26,7 +26,7 @@ import static specs.SecondLoginSpec.secondLoginResponseSpec;
 import static specs.SingleUserSpec.singleRequestSpec;
 import static specs.SingleUserSpec.singleResponseSpec;
 
-public class ApiTest {
+public class ApiTest extends TestBase {
     @Test
     public void apiStatusCode() {
 
@@ -62,12 +62,12 @@ public class ApiTest {
 
     @Test
     public void deleteTest() {
-        LombokModel response = step("Make request delete and checkout status code", () ->
+          step("Make request delete and checkout status code", () ->{
                 given(deleteRequestSpec)
                         .delete()
                         .then()
-                        .spec(deleteResponseSpec)
-                        .extract().as(LombokModel.class));
+                        .spec(deleteResponseSpec);
+    });
     }
 
     @Test
