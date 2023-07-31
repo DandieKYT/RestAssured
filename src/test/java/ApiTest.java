@@ -1,5 +1,6 @@
 
 import io.qameta.allure.Feature;
+import models.LoginModel;
 import models.LombokModel;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,8 @@ import static org.hamcrest.Matchers.is;
 
 import static specs.LoginSpec.loginRequestSpec;
 import static specs.LoginSpec.loginResponseSpec;
+import static specs.SecondLoginSpec.secondLoginRequestSpec;
+import static specs.SecondLoginSpec.secondLoginResponseSpec;
 
 public class ApiTest {
     @Test
@@ -57,18 +60,20 @@ public class ApiTest {
 
     @Test
     public void loginSuccessfull() {
-        String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
-        given()
-                .log().uri()
-                .body(body)
-                .contentType(JSON)
+        LoginModel loginModelSecond = new LoginModel();
+        loginModelSecond.setEmail("eve.holt@reqres.in");
+        loginModelSecond.setPassword("cityslicka");
+
+        LoginModel response = step("Make request", () ->
+        given(secondLoginRequestSpec)
+                .body(loginModelSecond)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .spec(secondLoginResponseSpec)
+                .extract().as(LoginModel.class));
+        step("Verify response token", () ->
+                assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
