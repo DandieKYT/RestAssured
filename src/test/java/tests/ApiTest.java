@@ -6,6 +6,7 @@ import models.LombokModel;
 import models.SingleUserModel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import pages.BasePage;
 
 
 import static com.codeborne.selenide.Selenide.open;
@@ -26,12 +27,11 @@ import static specs.SecondLoginSpec.secondLoginResponseSpec;
 import static specs.SingleUserSpec.singleRequestSpec;
 import static specs.SingleUserSpec.singleResponseSpec;
 
-public class ApiTest extends TestBase {
+public class ApiTest extends BasePage {
 
 
     @Test
     public void apiStatusCode() {
-        basePage.openPage();
         LombokModel response = step("Make request and checkout status code", () ->
                 given(errorRequestSpec)
                         .get()
@@ -42,7 +42,6 @@ public class ApiTest extends TestBase {
 
     @Test
     public void postUserTest() {
-        basePage.openPage();
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
@@ -64,7 +63,6 @@ public class ApiTest extends TestBase {
 
     @Test
     public void deleteTest() {
-        basePage.openPage();
         step("Make request delete and checkout status code", () ->{
                 given(deleteRequestSpec)
                         .delete()
@@ -75,7 +73,6 @@ public class ApiTest extends TestBase {
 
     @Test
     public void loginSuccessfull() {
-        basePage.openPage();
         LoginModel loginModelSecond = new LoginModel();
         loginModelSecond.setEmail("eve.holt@reqres.in");
         loginModelSecond.setPassword("cityslicka");
@@ -94,7 +91,6 @@ public class ApiTest extends TestBase {
 
     @Test
     public void singleUser() {
-        basePage.openPage();
         SingleUserModel response = step("Make request", () ->
                 given(singleRequestSpec)
                         .get()
