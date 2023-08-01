@@ -27,12 +27,11 @@ import static specs.SingleUserSpec.singleRequestSpec;
 import static specs.SingleUserSpec.singleResponseSpec;
 
 public class ApiTest {
-BasePage basePage = new BasePage();
-Attachment attachment = new Attachment();
+
 
     @Test
     public void apiStatusCode() {
-        basePage.openPage();
+
         LombokModel response = step("Make request and checkout status code", () ->
                 given(errorRequestSpec)
                         .get()
@@ -43,7 +42,7 @@ Attachment attachment = new Attachment();
 
     @Test
     public void postUserTest() {
-        basePage.openPage();
+
         LombokModel loginModel = new LombokModel();
         loginModel.setName("morpheus");
         loginModel.setJob("leader");
@@ -65,7 +64,7 @@ Attachment attachment = new Attachment();
 
     @Test
     public void deleteTest() {
-        basePage.openPage();
+
         step("Make request delete and checkout status code", () ->{
                 given(deleteRequestSpec)
                         .delete()
@@ -76,7 +75,7 @@ Attachment attachment = new Attachment();
 
     @Test
     public void loginSuccessfull() {
-        basePage.openPage();
+
         LoginModel loginModelSecond = new LoginModel();
         loginModelSecond.setEmail("eve.holt@reqres.in");
         loginModelSecond.setPassword("cityslicka");
@@ -95,7 +94,6 @@ Attachment attachment = new Attachment();
 
     @Test
     public void singleUser() {
-        basePage.openPage();
         SingleUserModel response = step("Make request", () ->
                 given(singleRequestSpec)
                         .get()
