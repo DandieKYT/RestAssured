@@ -26,8 +26,9 @@ import static specs.SecondLoginSpec.secondLoginResponseSpec;
 import static specs.SingleUserSpec.singleRequestSpec;
 import static specs.SingleUserSpec.singleResponseSpec;
 
-public class ApiTest extends TestBase {
-
+public class ApiTest {
+BasePage basePage = new BasePage();
+Attachment attachment = new Attachment();
 
     @Test
     public void apiStatusCode() {
