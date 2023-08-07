@@ -49,6 +49,7 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind:2.14.2',
             "io.qameta.allure:allure-selenide:$allureVersion",
             'com.fasterxml.jackson.core:jackson-core:2.14.2',
+            "com.github.javafaker:javafaker:1.0.2",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             'io.github.bonigarcia:webdrivermanager:5.2.1',
             'io.qameta.allure:allure-rest-assured:2.21.0',

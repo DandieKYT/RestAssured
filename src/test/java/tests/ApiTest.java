@@ -4,11 +4,11 @@ import models.LoginModel;
 import models.LombokModel;
 
 import models.SingleUserModel;
-import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.Test;
 
 
-import static com.codeborne.selenide.Selenide.open;
+
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
