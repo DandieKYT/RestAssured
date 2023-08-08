@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateTestCaseResponse {
-    String name, id;
+    String name, id, precondition,expectedResult;
 }

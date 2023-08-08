@@ -33,7 +33,6 @@ public class AllureTest extends TestBase {
                                 "ALLURE_TESTOPS_SESSION", "5cb11656-c10d-4ee4-b142-5b201dee9f90")
                         .contentType("application/json;charset=UTF-8")
                         .body(testCase)
-                        .queryParam("project Id", projectId)
                         .when()
                         .post("https://allure.autotests.cloud/api/rs/testcasetree/leaf?projectId=3488&treeId=&")
                         .then()
@@ -55,42 +54,48 @@ public class AllureTest extends TestBase {
         });
         step("Edit testcase preconditions", () -> {
             String testCaseID = createTestCaseResponse.getId();
-            testCaseModel.setPrecondition(someName);
+            testCase.setPrecondition(someName);
             given()
                     .log().all()
                     .header("X-XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077")
                     .cookies("XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077",
                             "ALLURE_TESTOPS_SESSION", "5cb11656-c10d-4ee4-b142-5b201dee9f90")
                     .contentType("application/json;charset=UTF-8")
-                    .body(testCaseModel)
+                    .body(testCase)
                     .when()
-                    .patch(format("/api/rs/testcase/%s", testCaseID));
+                    .patch(format("/api/rs/testcase/%s", testCaseID))
+                    .then()
+                    .log().body();
         });
         step("Edit testcase steps", () -> {
-
-            testCaseModel.setName(someName);
+            String testCaseID = createTestCaseResponse.getId();
+            testCase.setName(someName);
             given()
                     .log().all()
                     .header("X-XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077")
                     .cookies("XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077",
                             "ALLURE_TESTOPS_SESSION", "5cb11656-c10d-4ee4-b142-5b201dee9f90")
                     .contentType("application/json;charset=UTF-8")
-                    .body(testCaseModel)
+                    .body(testCase)
                     .when()
-                    .patch("/api/rs/testcase/%s");
+                    .post(format("/api/rs/testcase/%s/scenario", testCaseID))
+                    .then()
+                    .log().body();
         });
         step("Edit testcase expectedResult", () -> {
-
-            testCaseModel.setExpectedResult(someName);
+            String testCaseID = createTestCaseResponse.getId();
+            testCase.setExpectedResult(someName);
             given()
                     .log().all()
                     .header("X-XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077")
                     .cookies("XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077",
                             "ALLURE_TESTOPS_SESSION", "5cb11656-c10d-4ee4-b142-5b201dee9f90")
                     .contentType("application/json;charset=UTF-8")
-                    .body(testCaseModel)
+                    .body(testCase)
                     .when()
-                    .patch("/api/rs/testcase/%s");
+                    .patch(format("/api/rs/testcase/%s", testCaseID))
+                    .then()
+                    .log().body();
 
         });
 

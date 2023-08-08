@@ -1,9 +1,0 @@
-package models;
-
-
-import lombok.Data;
-
-@Data
-public class TestCaseModel {
-    String precondition, name, expectedResult, id;
-}
