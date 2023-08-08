@@ -13,7 +13,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
-import static org.hamcrest.Matchers.is;
 
 
 public class AllureTest extends TestBase {
@@ -66,7 +65,6 @@ public class AllureTest extends TestBase {
                     .body(testCaseModel)
                     .when()
                     .patch(format("/api/rs/testcase/%s", testCaseID));
-
         });
         step("Edit testcase steps", () -> {
 
@@ -79,7 +77,7 @@ public class AllureTest extends TestBase {
                     .contentType("application/json;charset=UTF-8")
                     .body(testCaseModel)
                     .when()
-                    .post("https://allure.autotests.cloud/api/rs/testcase/%s");
+                    .patch("/api/rs/testcase/%s");
         });
         step("Edit testcase expectedResult", () -> {
 
@@ -92,9 +90,11 @@ public class AllureTest extends TestBase {
                     .contentType("application/json;charset=UTF-8")
                     .body(testCaseModel)
                     .when()
-                    .patch("https://allure.autotests.cloud/api/rs/testcase/%s");
+                    .patch("/api/rs/testcase/%s");
+
         });
 
 
     }
+
 }
