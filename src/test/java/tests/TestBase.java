@@ -2,13 +2,13 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import io.restassured.RestAssured;
-import models.AllureModel;
+import models.CreateTestCaseResponse;
 import models.TestCaseModel;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
-    AllureModel testCase = new AllureModel();
+    CreateTestCaseResponse testCase = new CreateTestCaseResponse();
     TestCaseModel testCaseModel = new TestCaseModel();
     @BeforeAll
     static void setUp() {

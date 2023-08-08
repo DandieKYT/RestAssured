@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllureModel {
-    String name;
+public class CreateTestCaseResponse {
+    String name, id;
 }
