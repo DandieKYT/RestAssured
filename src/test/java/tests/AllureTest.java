@@ -13,6 +13,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static specs.AuthSpec.authRequestSpec;
 
 
 public class AllureTest extends TestBase {
@@ -26,15 +27,10 @@ public class AllureTest extends TestBase {
 
         testCase.setName(someName);
         CreateTestCaseResponse createTestCaseResponse = step("Create testcase", () ->
-                given()
-                        .log().all()
-                        .header("X-XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077")
-                        .cookies("XSRF-TOKEN", "38dd8d06-c8a1-45ea-af9a-7eba2dd09077",
-                                "ALLURE_TESTOPS_SESSION", "5cb11656-c10d-4ee4-b142-5b201dee9f90")
-                        .contentType("application/json;charset=UTF-8")
+                given(authRequestSpec)
                         .body(testCase)
                         .when()
-                        .post("https://allure.autotests.cloud/api/rs/testcasetree/leaf?projectId=3488&treeId=&")
+                        .post()
                         .then()
                         .log().status()
                         .log().body()
