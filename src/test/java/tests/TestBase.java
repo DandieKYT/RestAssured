@@ -17,11 +17,11 @@ public class TestBase {
     CreateTestCaseResponse testCase = new CreateTestCaseResponse();
     @BeforeAll
 
-    public void setUp() {
+   static void setUp() {
         CreateTestCaseResponse testCase = new CreateTestCaseResponse();
         Configuration.baseUrl = "https://allure.autotests.cloud";
         Configuration.holdBrowserOpen = true;
-
+        String token = "38dd8d06-c8a1-45ea-af9a-7eba2dd09077", session = "b68e6bbe-e67c-4828-85b4-3f828faf08bd";
         RestAssured.baseURI = "https://allure.autotests.cloud";
 
         testCase.setName("1234");
