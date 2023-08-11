@@ -1,9 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import io.restassured.RestAssured;
 import models.CreateTestCaseResponse;
-import models.LombokModel;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Cookie;
 
@@ -12,8 +10,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
-import static specs.AuthSpec.authRequestSpec;
-import static specs.AuthSpec.authResponseSpec;
+import static specs.AuthTestCaseSpec.authRequestSpec;
+import static specs.AuthTestCaseSpec.authResponseSpec;
 
 
 
@@ -31,9 +29,8 @@ public class TestBase {
         testCase.setName("1234");
         CreateTestCaseResponse createTestCaseResponse = step("Create testcase", () -> {
             given(authRequestSpec)
-                    .then()
-                    .log().status()
-                    .log().body()
+                    .body(authRequestSpec)
+                    .post()
                     .then()
                     .spec(authResponseSpec)
                     .extract()as(CreateTestCaseResponse.class);

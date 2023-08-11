@@ -14,7 +14,7 @@ public class AllureTest extends TestBase {
         String testCaseID = testCase.getId();
         testCase.setPrecondition("1234");
         testCase.setId(testCaseID);
-        given()
+        given(AuthTestCaseSpec)
                 .log().all()
                 .header("X-XSRF-TOKEN", token)
                 .cookies("XSRF-TOKEN", token,
