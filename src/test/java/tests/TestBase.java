@@ -12,7 +12,8 @@ public class TestBase {
     static void setUp() {
         Configuration.baseUrl = "https://allure.autotests.cloud";
         Configuration.holdBrowserOpen = true;
-
         RestAssured.baseURI = "https://allure.autotests.cloud";
+
+
     }
 }
