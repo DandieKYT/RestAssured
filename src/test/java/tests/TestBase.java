@@ -33,7 +33,7 @@ public class TestBase {
                     .post()
                     .then()
                     .spec(authResponseSpec)
-                    .extract()as(CreateTestCaseResponse.class);
+                    .extract().as(CreateTestCaseResponse.class)
         });
 
 
