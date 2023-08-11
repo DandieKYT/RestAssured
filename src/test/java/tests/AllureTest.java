@@ -1,6 +1,7 @@
 package tests;
 
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,16 +12,12 @@ import static specs.AuthSpec.authRequestSpec;
 public class AllureTest extends TestBase {
 
     @Test
+    @DisplayName("Добавление предусловий")
     public void testPrecondition() {
         String testCaseID = testCase.getId();
         testCase.setPrecondition("1234");
         testCase.setId(testCaseID);
         given(authRequestSpec)
-                .log().all()
-                .header("X-XSRF-TOKEN", token)
-                .cookies("XSRF-TOKEN", token,
-                        "ALLURE_TESTOPS_SESSION", session)
-                .contentType("application/json;charset=UTF-8")
                 .body(testCase)
                 .when()
                 .patch(format("/api/rs/testcase/%s", testCaseID))
@@ -30,15 +27,11 @@ public class AllureTest extends TestBase {
 
 
     @Test
+    @DisplayName("Добавление шагов")
     public void testSteps() {
         String testCaseID = testCase.getId();
         testCase.setName("1234");
-        given()
-                .log().all()
-                .header("X-XSRF-TOKEN", token)
-                .cookies("XSRF-TOKEN", token,
-                        "ALLURE_TESTOPS_SESSION", session)
-                .contentType("application/json;charset=UTF-8")
+        given(authRequestSpec)
                 .body(testCase)
                 .when()
                 .post(format("/api/rs/testcase/%s/scenario", testCaseID))
@@ -47,15 +40,11 @@ public class AllureTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Добавление ожидаемого результата")
     public void testExpectedResult() {
         String testCaseID = testCase.getId();
         testCase.setExpectedResult("1234");
-        given()
-                .log().all()
-                .header("X-XSRF-TOKEN", token)
-                .cookies("XSRF-TOKEN", token,
-                        "ALLURE_TESTOPS_SESSION", session)
-                .contentType("application/json;charset=UTF-8")
+        given(authRequestSpec)
                 .body(testCase)
                 .when()
                 .patch(format("/api/rs/testcase/%s", testCaseID))
