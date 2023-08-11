@@ -26,7 +26,7 @@ public class TestBase {
         Configuration.holdBrowserOpen = true;
         String session = "b68e6bbe-e67c-4828-85b4-3f828faf08bd";
 
-        testCase.setName("1234");
+        testCase.setName("SomeCase");
         CreateTestCaseResponse createTestCaseResponse = step("Create testcase", () -> {
             given(authRequestSpec)
                     .body(authRequestSpec)

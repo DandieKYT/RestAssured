@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static specs.AuthSpec.authRequestSpec;
 
 
 public class AllureTest extends TestBase {
@@ -14,7 +15,7 @@ public class AllureTest extends TestBase {
         String testCaseID = testCase.getId();
         testCase.setPrecondition("1234");
         testCase.setId(testCaseID);
-        given(AuthTestCaseSpec)
+        given(authRequestSpec)
                 .log().all()
                 .header("X-XSRF-TOKEN", token)
                 .cookies("XSRF-TOKEN", token,
