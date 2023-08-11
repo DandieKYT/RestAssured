@@ -15,6 +15,5 @@ public class AuthSpec {
             .header("X-XSRF-TOKEN", token)
             .cookies("XSRF-TOKEN", token,
                     "ALLURE_TESTOPS_SESSION", session)
-            .contentType("application/json;charset=UTF-8")
-            .post("/api/rs/testcasetree/leaf?projectId=3488&treeId=&");
+            .contentType("application/json;charset=UTF-8");
 }
