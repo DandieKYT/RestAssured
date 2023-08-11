@@ -1,22 +1,33 @@
 package specs;
 
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import models.CreateTestCaseResponse;
 import tests.TestBase;
 
 import static helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
+import static io.restassured.filter.log.LogDetail.BODY;
+import static io.restassured.filter.log.LogDetail.STATUS;
 
 
 public class AuthSpec extends TestBase {
-    static String xsfr = "38dd8d06-c8a1-45ea-af9a-7eba2dd09077";
-    static String session = "5cb11656-c10d-4ee4-b142-5b201dee9f90";
+    static String token = "38dd8d06-c8a1-45ea-af9a-7eba2dd09077", session = "b68e6bbe-e67c-4828-85b4-3f828faf08bd";
     public static RequestSpecification authRequestSpec = (RequestSpecification) with()
             .baseUri("https://allure.autotests.cloud")
             .filter(withCustomTemplates())
             .log().uri()
-            .header("X-XSRF-TOKEN", "" + xsfr)
-            .cookies("XSRF-TOKEN", "" + xsfr,
-                    "ALLURE_TESTOPS_SESSION", "" + session)
+            .log().all()
+            .header("X-XSRF-TOKEN", token)
+            .cookies("XSRF-TOKEN", token,
+                    "ALLURE_TESTOPS_SESSION", session)
             .contentType("application/json;charset=UTF-8")
             .post("/api/rs/testcasetree/leaf?projectId=3488&treeId=&");
+    public static ResponseSpecification authResponseSpec = new ResponseSpecBuilder()
+            .log(STATUS)
+            .log(BODY)
+            .expectStatusCode(200)
+            .build();
+
 }
