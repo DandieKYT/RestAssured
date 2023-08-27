@@ -9,7 +9,6 @@ import pages.TestCaseResultPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static specs.AuthTestCaseSpec.authRequestSpec;
@@ -31,14 +30,14 @@ public class TestBase {
         String session = "b68e6bbe-e67c-4828-85b4-3f828faf08bd";
 
         testCase.setName("SomeCase");
-        CreateTestCaseResponse createTestCaseResponse = step("Create testcase", () -> {
+        CreateTestCaseResponse createTestCaseResponse =
             given(authRequestSpec)
                     .body(authRequestSpec)
                     .post()
                     .then()
                     .spec(authResponseSpec)
-                    .extract().as(CreateTestCaseResponse.class)
-        });
+                    .extract().as(CreateTestCaseResponse.class);
+
 
 
 
