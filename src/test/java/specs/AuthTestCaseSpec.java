@@ -28,5 +28,4 @@ public class AuthTestCaseSpec extends TestBase {
             .log(BODY)
             .expectStatusCode(200)
             .build();
-
 }

@@ -19,7 +19,7 @@ import static specs.AuthTestCaseSpec.authResponseSpec;
 public class TestBase {
     TestCaseResultPage testCaseResultPage = new TestCaseResultPage();
     BasePage basePage = new BasePage();
-    String token = "38dd8d06-c8a1-45ea-af9a-7eba2dd09077", session = "b68e6bbe-e67c-4828-85b4-3f828faf08bd";
+    String token = "84434f35-0215-4240-9217-81358f1b68f0", session = "4bc227f6-9943-474c-a1b7-d15a8f67e18d";
     CreateTestCaseResponse testCase = new CreateTestCaseResponse();
     @BeforeAll
 
