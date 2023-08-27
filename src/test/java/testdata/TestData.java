@@ -10,12 +10,13 @@ public class TestData {
             testCaseName = faker.rockBand().name(),
             nameStepTestCaseOne = faker.funnyName().name(),
             nameStepTestCaseTwo = faker.artist().name(),
+            nameStepTestCaseThree = faker.artist().name(),
             preconditionName = faker.funnyName().name(),
             getTestCaseId = CreateAndDeleteTestCase.getTestCaseID(),
             commentProject = "Все супер";
     public final static String
             jsonStringCreateTestCaseRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"spacing\":\"\"}, " +
-            "{\"name\":\"%s\",\"spacing\":\"\"}] }", nameStepTestCaseOne, nameStepTestCaseTwo);
+            "{\"name\":\"%s\",\"spacing\":\"\"}, {\"name\":\"%s\",\"spacing\":\"\"} ] }", nameStepTestCaseOne, nameStepTestCaseTwo,nameStepTestCaseThree );
     public final static String
             jsonStringEditRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"attachments\":[],\"steps\":[]," +
             "\"leaf\":true,\"stepsCount\":0,\"hasContent\":false,\"spacing\":\"\"}," + "{\"name\":\"%s\",\"attachments\":[]," +
