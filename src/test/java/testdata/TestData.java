@@ -25,7 +25,7 @@ public class TestData {
     public final static String
             jsonStringCreatePrecondition = String.format("{\"id\":%s,\"precondition\":\"%s\",\"preconditionHtml\": null}", getTestCaseId, preconditionName);
     public final static String
-            jsonStringCreateCommentProject = String.format("{\"testCaseId\":%s,\"body\":\"%s\"}", getTestCaseId, commentProject);
+            jsonStringCreateCommentProject = String.format("{\"testCaseId\":%s,\"body\":\"%s\"}", 25512, commentProject);
 
 }
 
