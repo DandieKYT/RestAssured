@@ -28,6 +28,4 @@ public interface AuthConfig extends Config {
     String projectId();
 
 
-
-
 }

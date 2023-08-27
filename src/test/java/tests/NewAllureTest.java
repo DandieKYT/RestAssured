@@ -1,17 +1,17 @@
 package tests;
 
 import authentication.Authentication;
-import static java.lang.String.format;
-
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import testcase.CreateAndDeleteTestCase;
+
 import static config.OpenBrowserConfig.openBaseUrlBrowser;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
+import static java.lang.String.format;
 import static specs.Specification.requestSpec;
 import static specs.Specification.responseSpec;
 import static testdata.TestData.*;
@@ -19,22 +19,23 @@ import static testdata.TestData.*;
 public class NewAllureTest extends TestBase {
     private final CreateAndDeleteTestCase createTestCaseTest = new CreateAndDeleteTestCase();
     private String testCaseId;
+
     @BeforeEach
-    void createTestCase(){
+    void createTestCase() {
         Authentication.getInstance().authenticate();
         createTestCaseTest.createNewTestCases();
         this.testCaseId = CreateAndDeleteTestCase.getTestCaseID();
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         createTestCaseTest.deleteTestCase();
         Selenide.closeWebDriver();
     }
 
     @Test
     @DisplayName("Добавление шагов в тест кейс и редактирование")
-    void testAddEditSteps(){
+    void testAddEditSteps() {
         step("Добавление шагов в тест кейс", () ->
                 given(requestSpec)
                         .body(jsonStringCreateTestCaseRequest)
@@ -58,23 +59,24 @@ public class NewAllureTest extends TestBase {
 
         step("Открытие", () ->
                 openBaseUrlBrowser());
-   }
+    }
 
-   @Test
-   @DisplayName("Добавление предулосвий в тест-кейс")
-    void precondition(){
-       step("Добавление предусловия в тест кейс", () ->
-               given(requestSpec)
-                       .body(jsonStringCreatePrecondition)
-                       .when()
-                       .patch(format("/testcase/%s", testCaseId))
-                       .then()
-                       .spec(responseSpec)
-                       .statusCode(200));
-   }
+    @Test
+    @DisplayName("Добавление предулосвий в тест-кейс")
+    void precondition() {
+        step("Добавление предусловия в тест кейс", () ->
+                given(requestSpec)
+                        .body(jsonStringCreatePrecondition)
+                        .when()
+                        .patch(format("/testcase/%s", testCaseId))
+                        .then()
+                        .spec(responseSpec)
+                        .statusCode(200));
+    }
+
     @Test
     @DisplayName("Добавление коментария в тест-кейс")
-    void comment(){
+    void comment() {
         step("Добавление предусловия в тест кейс", () ->
                 given(requestSpec)
                         .body(jsonStringCreateCommentProject)

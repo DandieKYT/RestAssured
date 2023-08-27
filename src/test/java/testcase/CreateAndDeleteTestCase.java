@@ -60,7 +60,7 @@ public class CreateAndDeleteTestCase {
                         .spec(responseSpec)
                         .statusCode(204));
         step("Проверка отсутствия тест кейса", OpenBrowserConfig::openBaseUrlBrowser);
-        String messageDelete = $x( "//div[text()='Test case was deleted']").innerText();
+        String messageDelete = $x("//div[text()='Test case was deleted']").innerText();
         step("Проверка сообщения что тест кейс удален", () ->
                 assertThat(messageDelete).isEqualTo("Test case was deleted")
         );

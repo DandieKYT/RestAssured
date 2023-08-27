@@ -14,17 +14,17 @@ public class TestData {
             getTestCaseId = CreateAndDeleteTestCase.getTestCaseID(),
             commentProject = "Все супер";
     public final static String
-    jsonStringCreateTestCaseRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"spacing\":\"\"}, " +
-                 "{\"name\":\"%s\",\"spacing\":\"\"}] }",nameStepTestCaseOne,nameStepTestCaseTwo);
+            jsonStringCreateTestCaseRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"spacing\":\"\"}, " +
+            "{\"name\":\"%s\",\"spacing\":\"\"}] }", nameStepTestCaseOne, nameStepTestCaseTwo);
     public final static String
-    jsonStringEditRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"attachments\":[],\"steps\":[]," +
+            jsonStringEditRequest = String.format("{\"steps\":[{\"name\":\"%s\",\"attachments\":[],\"steps\":[]," +
             "\"leaf\":true,\"stepsCount\":0,\"hasContent\":false,\"spacing\":\"\"}," + "{\"name\":\"%s\",\"attachments\":[]," +
             "\"steps\":[],\"leaf\":true,\"stepsCount\":0," +
             "\"hasContent\":false,\"spacing\":\"\"}],\"workPath\":[1]}", nameStepTestCaseTwo, nameStepTestCaseOne);
     public final static String
-    jsonStringCreatePrecondition = String.format("{\"id\":%s,\"precondition\":\"%s\",\"preconditionHtml\": null}", getTestCaseId, preconditionName);
+            jsonStringCreatePrecondition = String.format("{\"id\":%s,\"precondition\":\"%s\",\"preconditionHtml\": null}", getTestCaseId, preconditionName);
     public final static String
-    jsonStringCreateCommentProject = String.format("{\"testCaseId\":%s,\"body\":\"%s\"}", getTestCaseId, commentProject);
+            jsonStringCreateCommentProject = String.format("{\"testCaseId\":%s,\"body\":\"%s\"}", getTestCaseId, commentProject);
 
 }
 
