@@ -1,6 +1,7 @@
 package testcase;
 
 import config.AuthConfig;
+import config.OpenBrowserConfig;
 import models.CreateTestCaseBody;
 import models.CreateTestCaseResponse;
 import org.aeonbits.owner.ConfigFactory;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import testdata.TestData;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,7 +59,8 @@ public class CreateAndDeleteTestCase {
                         .then()
                         .spec(responseSpec)
                         .statusCode(204));
-        String messageDelete = $("[class='Alert Alert_status_failed Alert_center']").innerText();
+        step("Проверка отсутствия тест кейса", OpenBrowserConfig::openBaseUrlBrowser);
+        String messageDelete = $x( "//div[text()='Test case was deleted']").innerText();
         step("Проверка сообщения что тест кейс удален", () ->
                 assertThat(messageDelete).isEqualTo("Test case was deleted")
         );
