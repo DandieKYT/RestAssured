@@ -8,7 +8,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import testdata.TestData;
 
-import static com.codeborne.selenide.Selenide.$;
+
 import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
