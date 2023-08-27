@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import testcase.CreateAndDeleteTestCase;
+import testdata.TestData;
 
 import static config.OpenBrowserConfig.openBaseUrlBrowser;
 import static io.qameta.allure.Allure.step;
@@ -73,13 +74,13 @@ public class NewAllureTest extends TestBase {
                         .spec(responseSpec)
                         .statusCode(200));
     }
-
     @Test
     @DisplayName("Добавление коментария в тест-кейс")
     void comment() {
+        String jsonStringCommentRequest = String.format("{\"testCaseId\":%s,\"body\":\"%s\"}", testCaseId, commentProject);
         step("Добавление предусловия в тест кейс", () ->
                 given(requestSpec)
-                        .body(jsonStringCreateCommentProject)
+                        .body(jsonStringCommentRequest)
                         .when()
                         .post("/comment")
                         .then()
